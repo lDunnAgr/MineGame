@@ -8,6 +8,12 @@
             _playerLocation++;
         }
 
+        public void MovePlayerDown()
+        {
+            _playerLocation--;
+
+        }
+
         public int GetPlayerPosition()
         {
             return _playerLocation;

@@ -28,7 +28,12 @@ namespace Test
             _board.MovePlayerUp();
         }
 
-        private void Player_Moves_Up()
+        private void Moving_Down()
+        {
+            _board.MovePlayerDown();
+        }
+
+        private void Player_Moves_Up_Once()
         {
             _board.GetPlayerPosition().ShouldBe(1);
         }

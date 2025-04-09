@@ -14,7 +14,7 @@ namespace Test
         {
             Given(A_Board);
             When(Moving_Up);
-            Then(Player_Moves_Up);
+            Then(Player_Moves_Up_Once);
         }
 
         [Test]
@@ -24,6 +24,16 @@ namespace Test
             When(Moving_Up);
             And(Moving_Up);
             Then(Player_Moves_Up_Twice);
+        }
+
+        [Test]
+        public void AllowPlayerToMoveDown()
+        {
+            Given(A_Board);
+            When(Moving_Up);
+            And(Moving_Up);
+            And(Moving_Down);
+            Then(Player_Moves_Up_Once);
         }
     }
 }
