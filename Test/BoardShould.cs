@@ -16,5 +16,14 @@ namespace Test
             When(Moving_Up);
             Then(Player_Moves_Up);
         }
+
+        [Test]
+        public void AllowPlayerToMoveUpTwice()
+        {
+            Given(A_Board);
+            When(Moving_Up);
+            And(Moving_Up);
+            Then(Player_Moves_Up_Twice);
+        }
     }
 }

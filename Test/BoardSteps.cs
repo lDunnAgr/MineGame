@@ -32,5 +32,10 @@ namespace Test
         {
             _board.GetPlayerPosition().ShouldBe(1);
         }
+
+        private void Player_Moves_Up_Twice()
+        {
+            _board.GetPlayerPosition().ShouldBe(2);
+        }
     }
 }
