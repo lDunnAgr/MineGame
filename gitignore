@@ -68,6 +68,14 @@ ScaffoldingReadMe.txt
 # StyleCop
 StyleCopReport.xml
 
+# Build results
+
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
+
 # Files built by Visual Studio
 *_i.c
 *_p.c
@@ -365,6 +373,7 @@ ASALocalRun/
 
 # Visual Studio History (VSHistory) files
 .vshistory/
+.vs/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
