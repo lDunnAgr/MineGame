@@ -11,29 +11,30 @@ namespace Application
             _playerLocation = position;
         }
 
-        public void MovePlayerUp()
-        {
-            _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical+1);
-        }
-
-        public void MovePlayerDown()
-        {
-            _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
-        }
-
-        public void MovePlayerLeft()
-        {
-            _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
-        }
-
-        public void MoverPlayerRight()
-        {
-            _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
-        }
-
         public Position GetPlayerPosition()
         {
             return _playerLocation;
+        }
+
+        public void Move(Direction direction)
+        {
+            switch (direction) 
+            {
+                case Direction.Left:
+                    _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
+                    return;
+                case Direction.Right:
+                    _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
+                    return;
+                case Direction.Up:
+                    _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
+                    return;
+                case Direction.Down:
+                    _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
+                    return;
+                default:
+                    return;
+            }
         }
     }
 }

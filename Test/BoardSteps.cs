@@ -26,22 +26,22 @@ namespace Test
 
         private void Moving_Up()
         {
-            _board.MovePlayerUp();
+            _board.Move(Direction.Up);
         }
 
         private void Moving_Down()
         {
-            _board.MovePlayerDown();
+            _board.Move(Direction.Down);
         }
 
         private void Moving_Left()
         {
-            _board.MovePlayerLeft();
+            _board.Move(Direction.Left);
         }
 
         private void Moving_Right()
         {
-            _board.MoverPlayerRight();
+            _board.Move(Direction.Right);
         }
 
         private void Player_Moves_Up_Once()
