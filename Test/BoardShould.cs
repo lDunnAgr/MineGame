@@ -43,5 +43,13 @@ namespace Test
             When(Moving_Left);
             Then(Player_Moves_Left);
         }
+
+        [Test]
+        public void AllowPlayerToMoveRight()
+        {
+            Given(() => A_Board_With_Starting_Position(1,0));
+            When(Moving_Right);
+            Then(Player_Moves_Right);
+        }
     }
 }

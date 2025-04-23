@@ -26,6 +26,11 @@ namespace Application
             _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
         }
 
+        public void MoverPlayerRight()
+        {
+            _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
+        }
+
         public Position GetPlayerPosition()
         {
             return _playerLocation;

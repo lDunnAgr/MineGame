@@ -39,6 +39,11 @@ namespace Test
             _board.MovePlayerLeft();
         }
 
+        private void Moving_Right()
+        {
+            _board.MoverPlayerRight();
+        }
+
         private void Player_Moves_Up_Once()
         {
             _board.GetPlayerPosition().Vertical.ShouldBe(1);
@@ -54,6 +59,12 @@ namespace Test
         private void Player_Moves_Left()
         {
             _board.GetPlayerPosition().Horizontal.ShouldBe(0);
+            _board.GetPlayerPosition().Vertical.ShouldBe(0);
+        }
+
+        private void Player_Moves_Right()
+        {
+            _board.GetPlayerPosition().Horizontal.ShouldBe(2);
             _board.GetPlayerPosition().Vertical.ShouldBe(0);
         }
 
