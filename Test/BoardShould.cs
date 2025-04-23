@@ -35,5 +35,13 @@ namespace Test
             And(Moving_Down);
             Then(Player_Moves_Up_Once);
         }
+
+        [Test]
+        public void AllowPlayerToMoveLeft()
+        {
+            Given(() => A_Board_With_Starting_Position(1,0));
+            When(Moving_Left);
+            Then(Player_Moves_Left);
+        }
     }
 }

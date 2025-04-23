@@ -1,4 +1,5 @@
 ﻿using Application;
+using Domain;
 using Shouldly;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Test
 
         private void A_Board()
         {
-            _board = new Board();
+            _board = new Board(new Position(0,0));
         }
 
         private void Moving_Up()
@@ -33,14 +34,32 @@ namespace Test
             _board.MovePlayerDown();
         }
 
+        private void Moving_Left()
+        {
+            _board.MovePlayerLeft();
+        }
+
         private void Player_Moves_Up_Once()
         {
-            _board.GetPlayerPosition().ShouldBe(1);
+            _board.GetPlayerPosition().Vertical.ShouldBe(1);
+            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
         }
 
         private void Player_Moves_Up_Twice()
         {
-            _board.GetPlayerPosition().ShouldBe(2);
+            _board.GetPlayerPosition().Vertical.ShouldBe(2);
+            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
+        }
+
+        private void Player_Moves_Left()
+        {
+            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
+            _board.GetPlayerPosition().Vertical.ShouldBe(0);
+        }
+
+        private void A_Board_With_Starting_Position(int horizontal, int vertical)
+        {
+            _board = new Board(new Position(horizontal, vertical));
         }
     }
 }
