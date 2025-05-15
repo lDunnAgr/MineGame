@@ -1,11 +1,6 @@
 ﻿using Application;
 using Domain;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
@@ -21,7 +16,7 @@ namespace Test
 
         private void A_Board()
         {
-            _board = new Board(new Position(0,0));
+            _board = new Board(new Position(0, 0));
         }
 
         private void Moving_Up()
@@ -29,25 +24,9 @@ namespace Test
             _board.Move(Direction.Up);
         }
 
-        private void Moving_Down()
+        private void Moving_In(Direction direction)
         {
-            _board.Move(Direction.Down);
-        }
-
-        private void Moving_Left()
-        {
-            _board.Move(Direction.Left);
-        }
-
-        private void Moving_Right()
-        {
-            _board.Move(Direction.Right);
-        }
-
-        private void Player_Moves_Up_Once()
-        {
-            _board.GetPlayerPosition().Vertical.ShouldBe(1);
-            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
+            _board.Move(direction);
         }
 
         private void Player_Moves_Up_Twice()
@@ -56,21 +35,34 @@ namespace Test
             _board.GetPlayerPosition().Horizontal.ShouldBe(0);
         }
 
-        private void Player_Moves_Left()
-        {
-            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
-            _board.GetPlayerPosition().Vertical.ShouldBe(0);
-        }
-
-        private void Player_Moves_Right()
-        {
-            _board.GetPlayerPosition().Horizontal.ShouldBe(2);
-            _board.GetPlayerPosition().Vertical.ShouldBe(0);
-        }
-
         private void A_Board_With_Starting_Position(int horizontal, int vertical)
         {
             _board = new Board(new Position(horizontal, vertical));
+        }
+
+        private void Player_Is_At_Position(Direction direction, int horizontal, int vertical)
+        {
+            var horizantalEnd = horizontal;
+            var verticalEnd = vertical;
+
+            switch (direction)
+            {
+                case Direction.Up:
+                    verticalEnd++;
+                    break;
+                case Direction.Down:
+                    verticalEnd--;
+                    break;
+                case Direction.Left:
+                    horizantalEnd--;
+                    break;
+                case Direction.Right:
+                    horizantalEnd++;
+                    break;
+            }
+
+            _board.GetPlayerPosition().Horizontal.ShouldBe(horizantalEnd);
+            _board.GetPlayerPosition().Vertical.ShouldBe(verticalEnd);
         }
     }
 }
