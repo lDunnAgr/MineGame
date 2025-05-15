@@ -5,10 +5,12 @@ namespace Application
     public class Board
     {
         private Position _playerLocation;
+        private BoardDimensions _boardDimensions;
 
-        public Board(Position position)
+        public Board(Position position, BoardDimensions boardDimensions)
         {
             _playerLocation = position;
+            _boardDimensions = boardDimensions;
         }
 
         public Position GetPlayerPosition()
@@ -21,16 +23,16 @@ namespace Application
             switch (direction) 
             {
                 case Direction.Left:
-                    _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
+                    if (_playerLocation.Horizontal > 0) _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
                     return;
                 case Direction.Right:
-                    _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
+                    if (_boardDimensions.Width - 1 > _playerLocation.Horizontal) _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
                     return;
                 case Direction.Up:
-                    _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
+                    if (_boardDimensions.Height - 1 > _playerLocation.Vertical) _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
                     return;
                 case Direction.Down:
-                    _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
+                    if (_playerLocation.Vertical > 0) _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
                     return;
                 default:
                     return;

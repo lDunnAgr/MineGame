@@ -16,7 +16,7 @@ namespace Test
 
         private void A_Board()
         {
-            _board = new Board(new Position(0, 0));
+            _board = new Board(new Position(0, 0), new BoardDimensions(8, 8));
         }
 
         private void Moving_Up()
@@ -37,7 +37,7 @@ namespace Test
 
         private void A_Board_With_Starting_Position(int horizontal, int vertical)
         {
-            _board = new Board(new Position(horizontal, vertical));
+            _board = new Board(new Position(horizontal, vertical), new BoardDimensions(8, 8));
         }
 
         private void Player_Is_At_Position(Direction direction, int horizontal, int vertical)
@@ -63,6 +63,12 @@ namespace Test
 
             _board.GetPlayerPosition().Horizontal.ShouldBe(horizantalEnd);
             _board.GetPlayerPosition().Vertical.ShouldBe(verticalEnd);
+        }
+
+        private void Player_Doesnt_Move(int horizontal, int vertical)
+        {
+            _board.GetPlayerPosition().Vertical.ShouldBe(vertical);
+            _board.GetPlayerPosition().Horizontal.ShouldBe(horizontal);
         }
     }
 }

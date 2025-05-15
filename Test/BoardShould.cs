@@ -24,5 +24,16 @@ namespace Test
             And(Moving_Up);
             Then(Player_Moves_Up_Twice);
         }
+
+        [TestCase(Direction.Up, 0, 7)]
+        [TestCase(Direction.Down, 0, 0)]
+        [TestCase(Direction.Right, 7, 0)]
+        [TestCase(Direction.Left, 0, 0)]
+        public void PlayerCannotMoveOffBoard(Direction direction, int horizontalStart, int verticalStart)
+        {
+            Given(() => A_Board_With_Starting_Position(horizontalStart, verticalStart));
+            When(() => Moving_In(direction));
+            Then(() => Player_Doesnt_Move(horizontalStart, verticalStart));
+        }
     }
 }
