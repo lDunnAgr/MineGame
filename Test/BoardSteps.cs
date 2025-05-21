@@ -16,7 +16,22 @@ namespace Test
 
         private void A_Board()
         {
-            _board = new Board(new Position(0, 0), new BoardDimensions(8, 8));
+            _board = new Board(new Position(0, 0), new BoardDimensions(8, 8), []);
+        }
+
+        private void A_Board_With_A_Landmine()
+        {
+            _board = new Board(new Position(0, 0), new BoardDimensions(8, 8), [new Landmine(new Position(0,1))]);
+        }
+
+        private void Player_Steps_On_Landmine()
+        {
+            Moving_Up();
+        }
+
+        private void Player_Loses_A_Life()
+        {
+            _board.GetPlayerLives().ShouldBe(2);
         }
 
         private void Moving_Up()
@@ -37,7 +52,7 @@ namespace Test
 
         private void A_Board_With_Starting_Position(int horizontal, int vertical)
         {
-            _board = new Board(new Position(horizontal, vertical), new BoardDimensions(8, 8));
+            _board = new Board(new Position(horizontal, vertical), new BoardDimensions(8, 8), []);
         }
 
         private void Player_Is_At_Position(Direction direction, int horizontal, int vertical)
@@ -69,6 +84,6 @@ namespace Test
         {
             _board.GetPlayerPosition().Vertical.ShouldBe(vertical);
             _board.GetPlayerPosition().Horizontal.ShouldBe(horizontal);
-        }
+        }        
     }
 }

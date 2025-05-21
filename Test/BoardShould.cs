@@ -35,5 +35,13 @@ namespace Test
             When(() => Moving_In(direction));
             Then(() => Player_Doesnt_Move(horizontalStart, verticalStart));
         }
+
+        [Test]
+        public void AllowPlayerToStepOnLandMine()
+        {
+            Given(A_Board_With_A_Landmine);
+            When(Player_Steps_On_Landmine);
+            Then(Player_Loses_A_Life);
+        }
     }
 }

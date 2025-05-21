@@ -6,16 +6,24 @@ namespace Application
     {
         private Position _playerLocation;
         private BoardDimensions _boardDimensions;
+        private List<Landmine> _landmines;
+        private int _playerLives = 3;
 
-        public Board(Position position, BoardDimensions boardDimensions)
+        public Board(Position position, BoardDimensions boardDimensions, List<Landmine> landmines)
         {
             _playerLocation = position;
             _boardDimensions = boardDimensions;
+            _landmines = landmines;
         }
 
         public Position GetPlayerPosition()
         {
             return _playerLocation;
+        }
+
+        public int GetPlayerLives()
+        {
+            return _playerLives;
         }
 
         public void Move(Direction direction)
@@ -29,7 +37,16 @@ namespace Application
                     if (_boardDimensions.Width - 1 > _playerLocation.Horizontal) _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
                     return;
                 case Direction.Up:
-                    if (_boardDimensions.Height - 1 > _playerLocation.Vertical) _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
+                    if (_boardDimensions.Height - 1 > _playerLocation.Vertical)
+                    {
+                        _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
+                        var landmine = FindLandMineUnderPlayer();
+
+                        if (landmine != null)
+                        {
+                            _playerLives--;
+                        }
+                    }
                     return;
                 case Direction.Down:
                     if (_playerLocation.Vertical > 0) _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
@@ -37,6 +54,11 @@ namespace Application
                 default:
                     return;
             }
+        }
+
+        private Landmine? FindLandMineUnderPlayer()
+        {
+            return _landmines.FirstOrDefault(l => l.GetPosition() == _playerLocation);
         }
     }
 }
