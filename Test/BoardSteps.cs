@@ -34,6 +34,11 @@ namespace Test
             _board.GetPlayerLives().ShouldBe(2);
         }
 
+        private void Player_Has_Only_Lost_One_Life()
+        {
+            Player_Loses_A_Life();
+        }
+
         private void Moving_Up()
         {
             _board.Move(Direction.Up);

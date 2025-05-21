@@ -28,7 +28,7 @@ namespace Application
 
         public void Move(Direction direction)
         {
-            switch (direction) 
+            switch (direction)
             {
                 case Direction.Left:
                     if (_playerLocation.Horizontal > 0) _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
@@ -40,16 +40,15 @@ namespace Application
                     if (_boardDimensions.Height - 1 > _playerLocation.Vertical)
                     {
                         _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical + 1);
-                        var landmine = FindLandMineUnderPlayer();
-
-                        if (landmine != null)
-                        {
-                            _playerLives--;
-                        }
+                        CheckForLandmineAndDetonateIfFound();
                     }
                     return;
                 case Direction.Down:
-                    if (_playerLocation.Vertical > 0) _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
+                    if (_playerLocation.Vertical > 0)
+                    {
+                        _playerLocation = new Position(_playerLocation.Horizontal, _playerLocation.Vertical - 1);
+                        CheckForLandmineAndDetonateIfFound();
+                    };
                     return;
                 default:
                     return;
@@ -59,6 +58,17 @@ namespace Application
         private Landmine? FindLandMineUnderPlayer()
         {
             return _landmines.FirstOrDefault(l => l.GetPosition() == _playerLocation);
+        }
+
+        private void CheckForLandmineAndDetonateIfFound()
+        {
+            var landmine = FindLandMineUnderPlayer();
+
+            if (landmine != null && !landmine.HasDetonated())
+            {
+                landmine.Detonate();
+                _playerLives--;
+            }
         }
     }
 }

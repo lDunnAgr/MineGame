@@ -43,5 +43,15 @@ namespace Test
             When(Player_Steps_On_Landmine);
             Then(Player_Loses_A_Life);
         }
+
+        [Test]
+        public void LandMineDoesNotDetonateTwice()
+        {
+            Given(A_Board_With_A_Landmine);
+            And(Player_Steps_On_Landmine);
+            And(() => Moving_In(Direction.Down));
+            When(() => Moving_In(Direction.Up));
+            Then(Player_Has_Only_Lost_One_Life);
+        }
     }
 }
