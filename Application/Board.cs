@@ -36,10 +36,18 @@ namespace Application
             switch (direction)
             {
                 case Direction.Left:
-                    if (_playerLocation.Horizontal > 0) _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
+                    if (_playerLocation.Horizontal > 0)
+                    {
+                        _playerLocation = new Position(_playerLocation.Horizontal - 1, _playerLocation.Vertical);
+                        CheckForLandmineAndDetonateIfFound();
+                    }
                     return;
                 case Direction.Right:
-                    if (_boardDimensions.Width - 1 > _playerLocation.Horizontal) _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
+                    if (_boardDimensions.Width - 1 > _playerLocation.Horizontal)
+                    {
+                        _playerLocation = new Position(_playerLocation.Horizontal + 1, _playerLocation.Vertical);
+                        CheckForLandmineAndDetonateIfFound();
+                    }
                     return;
                 case Direction.Up:
                     if (_boardDimensions.Height - 1 > _playerLocation.Vertical)
