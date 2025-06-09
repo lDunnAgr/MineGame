@@ -41,6 +41,28 @@ namespace Test
             Moving_Up();
         }
 
+        public void Moves_Up_Seven_Times()
+        {
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+        }
+
+        public void At_Top_Of_The_Board()
+        {
+            _board.GetPlayerPosition().Vertical.ShouldBe(7);
+            _board.GetPlayerPosition().Horizontal.ShouldBe(0);
+        }
+
+        public void Player_Not_Dead()
+        {
+            _board.GetPlayerLives().ShouldBe(3);
+        }
+
         private void Player_Loses_A_Life()
         {
             _board.GetPlayerLives().ShouldBe(2);

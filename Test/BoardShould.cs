@@ -62,5 +62,14 @@ namespace Test
             When(Moving_Up);
             Then(Do_Not_Move);
         }
+
+        [Test]
+        public void PlayerShouldBeAbleToGetToTheTopOfTheBoard()
+        {
+            Given(A_Board);
+            When(Moves_Up_Seven_Times);
+            Then(At_Top_Of_The_Board);
+            And(Player_Not_Dead);
+        }
     }
 }
