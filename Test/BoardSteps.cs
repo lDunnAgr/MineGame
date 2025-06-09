@@ -24,6 +24,18 @@ namespace Test
             _board = new Board(new Position(0, 0), new BoardDimensions(8, 8), [new Landmine(new Position(0,1))]);
         }
 
+        private void A_Board_Has_Three_Landmines()
+        {
+            _board = new Board(new Position(0, 0), new BoardDimensions(8, 8), [new Landmine(new Position(0, 1)), new Landmine(new Position(0, 2)), new Landmine(new Position(0, 3))]);
+        }
+
+        private void A_Player_Has_Stepped_On_All_Landmines()
+        {
+            Moving_Up();
+            Moving_Up();
+            Moving_Up();
+        }
+
         private void Player_Steps_On_Landmine()
         {
             Moving_Up();
@@ -83,6 +95,11 @@ namespace Test
 
             _board.GetPlayerPosition().Horizontal.ShouldBe(horizantalEnd);
             _board.GetPlayerPosition().Vertical.ShouldBe(verticalEnd);
+        }
+
+        private void Do_Not_Move()
+        {
+            Player_Doesnt_Move(0, 3);
         }
 
         private void Player_Doesnt_Move(int horizontal, int vertical)

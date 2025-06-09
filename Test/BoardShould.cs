@@ -53,5 +53,14 @@ namespace Test
             When(() => Moving_In(Direction.Up));
             Then(Player_Has_Only_Lost_One_Life);
         }
+
+        [Test]
+        public void BoardShouldNotAllowDeadPlayerToMove()
+        {
+            Given(A_Board_Has_Three_Landmines);
+            And(A_Player_Has_Stepped_On_All_Landmines);
+            When(Moving_Up);
+            Then(Do_Not_Move);
+        }
     }
 }

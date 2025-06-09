@@ -28,6 +28,11 @@ namespace Application
 
         public void Move(Direction direction)
         {
+            if (_playerLives == 0)
+            {
+                return;
+            }
+
             switch (direction)
             {
                 case Direction.Left:
